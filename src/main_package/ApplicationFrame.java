@@ -13,12 +13,11 @@ public class ApplicationFrame extends JLabel {
     private JFrame frame;
     private ImageIcon background;
     private JLabel mainLabel;
-public class ApplicationFrame {
     ApplicationFrame() {
-        portraitIcon = new ImageIcon(this.getClass().
+        background = new ImageIcon(this.getClass().
                 getResource("/Kramskoy_Portrait_of_a_Woman_Bakcgraound_Picture.jpg"));
 
-        mainLabel = new JLabel(portraitIcon);
+        mainLabel = new JLabel(background);
         mainLabel.setSize(300, 200);
 
         frame = new JFrame("Schedule analization");
