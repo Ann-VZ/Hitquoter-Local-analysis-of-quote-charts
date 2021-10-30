@@ -4,27 +4,27 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ApplicationFrame extends JLabel {
-    /*@Override
-    protected void paintComponent(Graphics g) {
-        mainLabel.setSize(frame.getSize());
-        super.paintComponent(g);
-    }*/
-
-    private JFrame frame;
-    private ImageIcon background;
-    private JLabel mainLabel;
     ApplicationFrame() {
-        background = new ImageIcon(this.getClass().
-                getResource("/Kramskoy_Portrait_of_a_Woman_Bakcgraound_Picture.jpg"));
-
-        mainLabel = new JLabel(background);
-        mainLabel.setSize(300, 200);
-
-        frame = new JFrame("Schedule analization");
+        JFrame frame = new JFrame("Schedule analization");
         frame.setBounds(10, 20, 700, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
         frame.setLayout(new BorderLayout());
-        frame.add(mainLabel);
+
+        JLabel greetingLabel = new JLabel("<html><body style='text-align: center'>Program for estimating the independence of" +
+                "<br>local fluctuations in stock quotes, version 1.0");
+        greetingLabel.setHorizontalAlignment(JLabel.CENTER);
+        greetingLabel.setBorder(BorderFactory.createEmptyBorder(0, 20, 20, 20));
+        greetingLabel.setFont(new Font("Monotype Corsiva", Font.ITALIC, 35));
+        greetingLabel.setForeground(new Color(10, 63, 222));
+
+        JPanel mainPanel = new JPanel(new BorderLayout());
+        mainPanel.setSize(250, 50);
+        mainPanel.add(greetingLabel, BorderLayout.NORTH);
+
+        Container container = frame.getContentPane();
+        container.setLayout(new FlowLayout());
+        container.add(greetingLabel);
+
+        frame.setVisible(true);
     }
 }
