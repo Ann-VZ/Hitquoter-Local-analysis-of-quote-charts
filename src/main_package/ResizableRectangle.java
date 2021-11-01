@@ -108,6 +108,12 @@ public class ResizableRectangle {
 
     public BufferedImage cutScreenShot(BufferedImage screen, Rectangle rect) { // cuts out preselected rectangle from the screenshot
         // and returns the resulting image
+
+        if (rect==null) { // the user didn't choose a rectangle
+            return null;
+        }
+        System.out.println(screen);
+
         int maxWidth = screen.getWidth(), maxHeight = screen.getHeight();
         int xTopLeft = rect.x, yTopLeft = rect.y;
         xTopLeft = Math.min(Math.max(xTopLeft, 1), maxWidth); yTopLeft = Math.min(Math.max(yTopLeft, 1), maxHeight);

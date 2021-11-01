@@ -23,6 +23,7 @@ public class ScheduleConverter {
     ScheduleConverter() {
         ResizableRectangle myResRect = new ResizableRectangle();
         screen = myResRect.getScreenShot();
+        if (screen==null) return;
 
         setWidthHeight();
 

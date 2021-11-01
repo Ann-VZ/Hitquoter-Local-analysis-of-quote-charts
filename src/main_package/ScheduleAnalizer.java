@@ -21,6 +21,8 @@ public class ScheduleAnalizer {
     ScheduleAnalizer() {
         ScheduleConverter converter = new ScheduleConverter();
         schedule = converter.schedule;
+        if (schedule==null) return;
+
         width = converter.width;
         height = converter.height;
 
@@ -28,7 +30,7 @@ public class ScheduleAnalizer {
         setMinDiffOfHeight();
 
         getMinMaxPoints();
-        getClosest();
+        //getClosest();
     }
     private void setMinDiffOfHeight() { // setter of minDiffOfHeight - it's (percent/100) * height (of the schedule)
         minDiffOfHeight = (double) scheduleHeight * (percent/100.0);
@@ -128,7 +130,7 @@ public class ScheduleAnalizer {
         return average/(scheduleHeight + 2);
     }
 
-    void getClosest() {
+    double getClosest() {
         int maxJump = getMaxJump();
         /*System.out.println(Arrays.toString(schedule));
         System.out.println(MinMaxPoints);
@@ -150,9 +152,12 @@ public class ScheduleAnalizer {
             optimalDiff = Math.abs(quarter - part);
             optimalJump = -1;
         }
-        System.out.println(optimalPart+" "+optimalJump+" "+optimalDiff);
+        //System.out.println(optimalPart+" "+optimalJump+" "+optimalDiff);
+        return optimalPart;
     }
-    public static void main(String[] args) {
-        new ScheduleAnalizer();
+
+    boolean checkSchedule() {
+        if (schedule==null) return false;
+        return true;
     }
 }
