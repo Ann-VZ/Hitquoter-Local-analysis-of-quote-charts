@@ -70,7 +70,7 @@ public class ResizableRectangle {
         screenLabel.addMouseMotionListener(new MouseMotionEventListener());
 
         UIManager.put("OptionPane.okButtonText", "Confirm");
-        UIManager.put("OptionPane.okButtonColor", Color.BLUE);
+        //UIManager.put("OptionPane.okButtonColor", Color.BLUE);
         UIManager.put("OptionPane.buttonFont", new FontUIResource(new Font("MONOTYPE CORSIVA", Font.ITALIC,50)));
         UIManager.put("Button.foreground", new Color(80, 150, 255));
 
@@ -112,7 +112,6 @@ public class ResizableRectangle {
         if (rect==null) { // the user didn't choose a rectangle
             return null;
         }
-        System.out.println(screen);
 
         int maxWidth = screen.getWidth(), maxHeight = screen.getHeight();
         int xTopLeft = rect.x, yTopLeft = rect.y;

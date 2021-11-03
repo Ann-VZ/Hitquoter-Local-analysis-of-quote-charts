@@ -2,18 +2,25 @@ package main_package;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.FontUIResource;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ApplicationFrame extends JLabel {
+    public static final String text = "Каждый человек совершает ошибки. Это неизбежно, ведь нет идеальных людей. \n" +
+            "А еще это необходимо, ведь когда мы осознаем свои ошибки, мы растем над собой, находим верный путь в своей жизни.\n" +
+            " В своем знаменитом романе ”Война и мир” великий русский писатель Л. Н. Толстой раскрывает перед нами образ Пьера Безухова.\n" +
+            " Герой проходит через множество испытаний. Сначала Пьер – наивный неопытный юноша, цель жизни которого весьма расплывчата.\n" +
+            " Он совершает разный ошибки, некоторые из которых имеют весьма длительные последствия. Так, получив в наследство огромное\n" +
+            " состояние отца, Пьер женится на Элен Курагиной – девушке красивой, но порочной. Этот брак не приносит герою счастья и вплоть\n" +
+            " до самой смерти жены он жалеет о совершенном. ";
+
     ApplicationFrame() {
         JFrame frame = new JFrame("Schedule analization");
         frame.setBounds(10, 20, 700, 600);
-        //frame.setBounds(10, 20, 900, 800);
         frame.setMinimumSize(new Dimension(600, 450));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //frame.setLayout(new FlowLayout());
 
         JLabel greetingLabel = new JLabel("<html><body style='text-align: center'>Program for estimating the independence of" +
                 "<br>local fluctuations in stock quotes, version 1.0");
@@ -21,10 +28,9 @@ public class ApplicationFrame extends JLabel {
         greetingLabel.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 20));
         greetingLabel.setFont(new Font("Monotype Corsiva", Font.ITALIC, 35));
         greetingLabel.setForeground(new Color(10, 63, 222));
+        greetingLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JTextArea output = new JTextArea("Results", 5, 8);
-        //output.setTabSize(3);
-        //output.setMaximumSize(new Dimension(50, 50));
+        JTextArea output = new JTextArea("", 10, 20);
         output.setBorder(new EmptyBorder(5, 10, 10, 10));
         output.setLineWrap(true);
         output.setEditable(false);
@@ -35,7 +41,11 @@ public class ApplicationFrame extends JLabel {
         informationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("inf button pressed");
+                UIManager.put("OptionPane.buttonFont", new FontUIResource(new Font("Arial", Font.ITALIC,20)));
+                UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Arial", Font.BOLD, 18)));
+                UIManager.put("OptionPane.messageForeground", Color.BLUE);
+                UIManager.put("Button.foreground", new Color(200, 50, 70));
+                JOptionPane.showMessageDialog(frame, text, "Title", JOptionPane.PLAIN_MESSAGE);
             }
         });
 
@@ -54,11 +64,13 @@ public class ApplicationFrame extends JLabel {
         });
 
         Container container = frame.getContentPane();
-        //frame.setLayout(new BoxLayout(container, BoxLayout.PAGE_AXIS));
-        GridLayout mainLayout = new GridLayout(3, 1);
-        mainLayout.setVgap(5);
+        container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
+        /*GridBagLayout mainLayout = new GridBagLayout();
         container.setLayout(mainLayout);
-        container.add(greetingLabel);//, BorderLayout.NORTH);
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.anchor = GridBagConstraints.CENTER;*/
+        container.add(greetingLabel);
 
         JPanel mainPanel = new JPanel();
 
@@ -73,34 +85,26 @@ public class ApplicationFrame extends JLabel {
         container.add(mainPanel);
 
         JLabel textLabel = new JLabel("Results");
-        //textLabel.setPreferredSize(new Dimension(100, 50));
         textLabel.setFont(new Font("Monotype Corsiva", Font.ITALIC, 25));
-        textLabel.setBorder(new EmptyBorder(30, 30, 30, 30));
+        textLabel.setBorder(new EmptyBorder(0, 0, 5, 5));
         textLabel.setForeground(new Color(10, 63, 222));
-        //container.add(textLabel);
+        textLabel.setAlignmentX(CENTER_ALIGNMENT);
 
         JScrollPane resultsScroll = new JScrollPane(output);
         //resultsScroll.setPreferredSize(new Dimension(500, 500));
         //container.add(resultsScroll);
         frame.setVisible(true);
 
-        JFrame f = new JFrame("Just frame");
-        f.setBounds(20, 20, 600, 600);
-        f.setLayout(new FlowLayout());
-
         JPanel textPanel = new JPanel();
         //textPanel.setLayout(new BoxLayout(textPanel, BoxLayout.Y_AXIS));
-        textPanel.setLayout(new VerticalLayout());
+        textPanel.setLayout(new BoxLayout(textPanel, BoxLayout.Y_AXIS));
         textPanel.add(textLabel);
         textPanel.add(resultsScroll);
         textPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
-        frame.add(textPanel);
 
-        /*f.add(textPanel);
-        f.setVisible(true);*/
 
-        //container.add(textPanel);
+        container.add(textPanel);
 
-        //frame.setVisible(true);
+        frame.setVisible(true);
     }
 }
