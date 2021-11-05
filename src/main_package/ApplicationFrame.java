@@ -8,94 +8,128 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ApplicationFrame extends JLabel {
-    public static final String text = "Каждый человек совершает ошибки. Это неизбежно, ведь нет идеальных людей. \n" +
-            "А еще это необходимо, ведь когда мы осознаем свои ошибки, мы растем над собой, находим верный путь в своей жизни.\n" +
-            " В своем знаменитом романе ”Война и мир” великий русский писатель Л. Н. Толстой раскрывает перед нами образ Пьера Безухова.\n" +
-            " Герой проходит через множество испытаний. Сначала Пьер – наивный неопытный юноша, цель жизни которого весьма расплывчата.\n" +
-            " Он совершает разный ошибки, некоторые из которых имеют весьма длительные последствия. Так, получив в наследство огромное\n" +
-            " состояние отца, Пьер женится на Элен Курагиной – девушке красивой, но порочной. Этот брак не приносит герою счастья и вплоть\n" +
-            " до самой смерти жены он жалеет о совершенном. ";
+    public static final String TEXT = "The study of fluctuations in exchange quotations remains an extremely topical task. An extensive software and \n" +
+            "technological apparatus was created to predict the market situation. However, its use is often ineffective in the \n" +
+            "specific practice of exchange trading. \n" +
+            "Therefore, the determination of a dependent (or independent) local randomness of an increase (or decrease) in the \n" +
+            "exchange price may be in demand. \n" +
+            "A nominal quote chart is a kind of broken line with points of highs and lows. We can copy it (or part of it) from the\n" +
+            "monitor screen using my application Hitquoter 1.0 in Java 8 and turn it into a discrete array with a constant step \n" +
+            "along the x axis. \n" +
+            "We will compare the resulting array with independent random oscillations based on fractal constructions. \n" +
+            "The “Chaos game\" method is known for the Sierpinski triangle. In its construction, we choose three random static \n" +
+            "points on the plane. Let’s find the midpoint of the segment from any of these points to the fourth, random dynamic \n" +
+            "point. Now this midpoint becomes a new nominal fourth dynamic point. The procedure is repeated.\n" +
+            "We can simplify this construction and remove one vertex of the triangle. This has not been encountered in the topic of\n" +
+            "fractals in the available literature, but the principle of randomness remains unchanged. The nominal dynamic third \n" +
+            "point will be defined as the midpoint of the segment between the previous point and one randomly taken from the first \n" +
+            "two fixed points. If we take a pair of adjacent dynamic points consecutively in pairs, they become segments of randomly \n" +
+            "varying length. \n" +
+            "Let’s take the arithmetic mean of the lengths of these random segments. At large number of iterations the ratio of \n" +
+            "this mean to the length of the segment between the first two static points will be equal to ¼. We propose to use this\n" +
+            "fact to analyze quotes for local randomness.\n" +
+            "My application Hitquoter 1.0 performs calculations of the change in value from the minimum one pixel step along the \n" +
+            "x-axis to the step between the extrema. The program calculates the ratio of the amplitudes to the maximum difference \n" +
+            "of values in the selected fragment of the chart and displays the result that is closest to ¼ in the window. In the \n" +
+            "result line, the first place is the absolute value of the ratio, the second place that value in percent relative to ¼,\n" +
+            "and the third place is the analysis step.\n" +
+            "Approximation of the found chart values to ¼ allows us to consider changes in the chosen quote as locally independent\n" +
+            "(random). \n" +
+            "The Hitquoter 1.0 program is written in Java 8 in the IntelliJ IDEA 2020.2.3 IDE using Git. \n" +
+            "Huge thanks to my father for advice on the concept.\n" +
+            "07 November 2021, Anna Zoikina\n";
 
     ApplicationFrame() {
-        JFrame frame = new JFrame("Schedule analization");
-        frame.setBounds(10, 20, 700, 600);
-        frame.setMinimumSize(new Dimension(600, 450));
+        JFrame frame = new JFrame("Chart analysis"); // our main frame
+        frame.setBounds(10, 20, 700, 500);
+        frame.setMinimumSize(new Dimension(500, 350));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JLabel greetingLabel = new JLabel("<html><body style='text-align: center'>Program for estimating the independence of" +
-                "<br>local fluctuations in stock quotes, version 1.0");
+                "<br>local fluctuations in stock quotes, version 1.0"); // the label with the heading
         greetingLabel.setHorizontalAlignment(JLabel.CENTER);
         greetingLabel.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 20));
         greetingLabel.setFont(new Font("Monotype Corsiva", Font.ITALIC, 35));
         greetingLabel.setForeground(new Color(10, 63, 222));
         greetingLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JTextArea output = new JTextArea("", 10, 20);
+        JTextArea output = new JTextArea("", 10, 20); // output for results
         output.setBorder(new EmptyBorder(5, 10, 10, 10));
         output.setLineWrap(true);
         output.setEditable(false);
         output.setFont(new Font("Verdana", Font.PLAIN, 18));
 
-        JButton informationButton = new JButton("Information button");
+        JButton informationButton = new JButton("Information button"); // button for information about the program
+        informationButton.setFont(new Font("Arial", Font.PLAIN, 20));
         informationButton.setPreferredSize(new Dimension(200, 50));
         informationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                UIManager.put("OptionPane.okButtonText", "OK");
                 UIManager.put("OptionPane.buttonFont", new FontUIResource(new Font("Arial", Font.ITALIC,20)));
-                UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Arial", Font.BOLD, 18)));
-                UIManager.put("OptionPane.messageForeground", Color.BLUE);
-                UIManager.put("Button.foreground", new Color(200, 50, 70));
-                JOptionPane.showMessageDialog(frame, text, "Title", JOptionPane.PLAIN_MESSAGE);
+                UIManager.put("Button.foreground", new Color(12, 12, 199));
+
+                UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Arial", Font.BOLD, 16)));
+                //UIManager.put("OptionPane.messageForeground", new Color(111, 105, 105));
+                JOptionPane.showMessageDialog(frame, TEXT, "Information on the program", JOptionPane.PLAIN_MESSAGE);
             }
         });
 
-        JButton programButton = new JButton("Program button");
+        JButton programButton = new JButton("Program button"); // button for running the main program - analyzing a chart
+        programButton.setFont(new Font("Arial", Font.PLAIN, 20));
         programButton.setPreferredSize(new Dimension(200, 50));
         programButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ScheduleAnalizer analizer = new ScheduleAnalizer();
-                if (!analizer.checkSchedule()) {
+                ChartAnalyzer analizer = new ChartAnalyzer();
+                if (!analizer.checkChart()) {
                     output.append("The user hasn't chosen a rectangle!\n");
                 } else {
-                    output.append(analizer.getClosest()+"\n");
+                    double[] result = analizer.getClosest();
+                    double absValue = result[0];
+                    String abs = String.format("%.3f", absValue);
+                    double percentage = 400 * absValue;
+                    String per = String.format("%.1f", percentage);
+                    int step = (int) result[1];
+                    output.append(abs+"   "+per+" percent   ");
+                    if (step==-1) output.append("Step by extrema\n");
+                    else output.append(step+"\n");
                 }
             }
         });
 
-        Container container = frame.getContentPane();
+        Container container = frame.getContentPane(); // container with all the components for frame
         container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
-        /*GridBagLayout mainLayout = new GridBagLayout();
-        container.setLayout(mainLayout);
-        GridBagConstraints constraints = new GridBagConstraints();
-        constraints.fill = GridBagConstraints.NONE;
-        constraints.anchor = GridBagConstraints.CENTER;*/
         container.add(greetingLabel);
 
-        JPanel mainPanel = new JPanel();
 
-        //mainPanel.setPreferredSize(new Dimension(200, 150));
-        mainPanel.setLayout(new FlowLayout());
+        JPanel mainPanel = new JPanel(); // panel for buttons
+
+        GridLayout mainPanelLayout = new GridLayout(1, 2);
+        mainPanelLayout.setVgap(20);
+        mainPanelLayout.setHgap(40);
+        mainPanel.setLayout(mainPanelLayout);
+        mainPanel.setBorder(new EmptyBorder(10, 30, 10, 30));
+        /*mainPanel.setLayout(new FlowLayout());
         ((FlowLayout)mainPanel.getLayout()).setHgap(100);
-        ((FlowLayout) mainPanel.getLayout()).setVgap(25);
+        ((FlowLayout) mainPanel.getLayout()).setVgap(25);*/
         mainPanel.add(informationButton);
         mainPanel.add(programButton);
         //mainPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 20, 20));
 
         container.add(mainPanel);
 
-        JLabel textLabel = new JLabel("Results");
+        JLabel textLabel = new JLabel("Results(absolute value, percentage, analysis step)"); // label above output
         textLabel.setFont(new Font("Monotype Corsiva", Font.ITALIC, 25));
         textLabel.setBorder(new EmptyBorder(0, 0, 5, 5));
         textLabel.setForeground(new Color(10, 63, 222));
         textLabel.setAlignmentX(CENTER_ALIGNMENT);
 
-        JScrollPane resultsScroll = new JScrollPane(output);
+        JScrollPane resultsScroll = new JScrollPane(output); // JScrollPane - so that the user can scroll the output
         //resultsScroll.setPreferredSize(new Dimension(500, 500));
         //container.add(resultsScroll);
-        frame.setVisible(true);
 
-        JPanel textPanel = new JPanel();
+        JPanel textPanel = new JPanel(); // panel with output and its label
         //textPanel.setLayout(new BoxLayout(textPanel, BoxLayout.Y_AXIS));
         textPanel.setLayout(new BoxLayout(textPanel, BoxLayout.Y_AXIS));
         textPanel.add(textLabel);
@@ -105,6 +139,9 @@ public class ApplicationFrame extends JLabel {
 
         container.add(textPanel);
 
-        frame.setVisible(true);
+        frame.setIconImage(new ImageIcon(getClass().getResource("/resources/Icon3.png")).getImage());
+        //setting icon of the frame
+
+        frame.setVisible(true); // setting frame visible
     }
 }

@@ -56,7 +56,8 @@ public class ResizableRectangle {
                 (int)(screen.getWidth()*0.90),
                 (int)(screen.getHeight()*0.70)));
 
-        final JLabel messageLabel = new JLabel("Please, drag a rectangle in the screen shot");
+        final JLabel messageLabel = new JLabel("Please, choose the part of the chart You want to copy for program work" +
+                "(drag a rectangle in the screen shot)");
         messageLabel.setFont(new Font("MONOTYPE CORSIVA", Font.ITALIC,25));
         messageLabel.setForeground(Color.BLUE);
 
