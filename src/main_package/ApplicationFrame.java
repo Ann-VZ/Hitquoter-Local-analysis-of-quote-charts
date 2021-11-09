@@ -128,7 +128,7 @@ public class ApplicationFrame extends JLabel {
 
         container.add(textPanel);
 
-        frame.setIconImage(new ImageIcon(getClass().getResource("//Icon3.png")).getImage());
+        frame.setIconImage(new ImageIcon(this.getClass().getResource("/Icon3.png")).getImage());
         //setting icon of the frame
 
         frame.setVisible(true); // setting frame visible
